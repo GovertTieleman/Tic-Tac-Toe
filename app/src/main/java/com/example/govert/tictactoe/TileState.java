@@ -1,5 +1,5 @@
 package com.example.govert.tictactoe;
 
-public enum tileState {
+public enum TileState {
     BLANK, CROSS, CIRCLE, INVALID
 }
