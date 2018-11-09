@@ -1,5 +1,6 @@
 package com.example.govert.tictactoe;
 
+import static com.example.govert.tictactoe.GameState.DRAW;
 import static com.example.govert.tictactoe.GameState.IN_PROGRESS;
 import static com.example.govert.tictactoe.GameState.PLAYER_ONE_WIN;
 import static com.example.govert.tictactoe.GameState.PLAYER_TWO_WIN;
@@ -41,44 +42,49 @@ public class Game {
     }
 
     public GameState won() {
-//        check player 1
+//        check player 1 win
 //        check rows
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[i][0].equals(board[i][1])
                     && board[i][0].equals(board[i][2])
                     && board[i][0].equals(TileState.CROSS)) {
-                gameOver = true;
                 return PLAYER_ONE_WIN;
             }
         }
 //        check columns
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[0][i].equals(board[1][i])
                     && board[0][i].equals(board[2][i])
                     && board[0][i].equals(TileState.CROSS)) {
-                gameOver = true;
                 return PLAYER_ONE_WIN;
             }
-//            check player 2
+//            check player 2 win
 //            check rows
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[i][0].equals(board[i][1])
                     && board[i][0].equals(board[i][2])
                     && board[i][0].equals(TileState.CIRCLE)) {
-                gameOver = true;
                 return PLAYER_TWO_WIN;
             }
         }
 //        check columns
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[0][i].equals(board[1][i])
                     && board[0][i].equals(board[2][i])
                     && board[0][i].equals(TileState.CIRCLE)) {
-                gameOver = true;
                 return PLAYER_TWO_WIN;
             }
         }
+//        check for draw
+        int counter = 0;
+        for(int i=0; i<BOARD_SIZE; i++)
+            for(int j=0; j<BOARD_SIZE; j++)
+                if(!(board[i][j] == TileState.BLANK))
+                    counter += 1;
+                    if(counter == 9)
+                        return DRAW;
+
         return IN_PROGRESS;
     }
 }

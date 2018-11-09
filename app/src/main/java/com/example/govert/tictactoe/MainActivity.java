@@ -9,12 +9,64 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Game game;
+    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    private String s1, s2, s3, s4, s5, s6, s7, s8, s9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         game = new Game();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+//        save button states
+        s1 = ((Button) findViewById(R.id.button1)).getText().toString();
+        outState.putString("b1", s1);
+        s2 = ((Button) findViewById(R.id.button2)).getText().toString();
+        outState.putString("b2", s2);
+        s3 = ((Button) findViewById(R.id.button3)).getText().toString();
+        outState.putString("b3", s3);
+        s4 = ((Button) findViewById(R.id.button4)).getText().toString();
+        outState.putString("b4", s4);
+        s5 = ((Button) findViewById(R.id.button5)).getText().toString();
+        outState.putString("b5", s5);
+        s6 = ((Button) findViewById(R.id.button6)).getText().toString();
+        outState.putString("b6", s6);
+        s7 = ((Button) findViewById(R.id.button7)).getText().toString();
+        outState.putString("b7", s7);
+        s8 = ((Button) findViewById(R.id.button8)).getText().toString();
+        outState.putString("b8", s8);
+        s9 = ((Button) findViewById(R.id.button9)).getText().toString();
+        outState.putString("b9", s9);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+//        load button states
+        s1 = savedInstanceState.getString("b1");
+        ((Button) findViewById(R.id.button1)).setText(s1);
+        s2 = savedInstanceState.getString("b2");
+        ((Button) findViewById(R.id.button2)).setText(s2);
+        s3 = savedInstanceState.getString("b3");
+        ((Button) findViewById(R.id.button3)).setText(s3);
+        s4 = savedInstanceState.getString("b4");
+        ((Button) findViewById(R.id.button4)).setText(s4);
+        s5 = savedInstanceState.getString("b5");
+        ((Button) findViewById(R.id.button5)).setText(s5);
+        s6 = savedInstanceState.getString("b6");
+        ((Button) findViewById(R.id.button6)).setText(s6);
+        s7 = savedInstanceState.getString("b7");
+        ((Button) findViewById(R.id.button7)).setText(s7);
+        s8 = savedInstanceState.getString("b8");
+        ((Button) findViewById(R.id.button8)).setText(s8);
+        s9 = savedInstanceState.getString("b9");
+        ((Button) findViewById(R.id.button9)).setText(s9);
+
     }
 
     public void tileClicked(View view) {
@@ -88,6 +140,12 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(gameState.equals(GameState.PLAYER_TWO_WIN)){
             Toast.makeText(MainActivity.this,"Player 2 wins!",
+                    Toast.LENGTH_LONG).show();
+            resetBoard();
+            game = new Game();
+        }
+        else if(gameState.equals(GameState.DRAW)) {
+            Toast.makeText(MainActivity.this,"Draw!",
                     Toast.LENGTH_LONG).show();
             resetBoard();
             game = new Game();
