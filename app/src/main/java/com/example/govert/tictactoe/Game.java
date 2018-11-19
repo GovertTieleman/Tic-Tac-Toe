@@ -42,8 +42,8 @@ public class Game {
     }
 
     public GameState won() {
-//        check player 1 win
-//        check rows
+        // check player 1 win
+        // check rows
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[i][0].equals(board[i][1])
                     && board[i][0].equals(board[i][2])
@@ -51,15 +51,16 @@ public class Game {
                 return PLAYER_ONE_WIN;
             }
         }
-//        check columns
+        // check columns
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[0][i].equals(board[1][i])
                     && board[0][i].equals(board[2][i])
                     && board[0][i].equals(TileState.CROSS)) {
                 return PLAYER_ONE_WIN;
             }
-//            check player 2 win
-//            check rows
+
+            // check player 2 win
+            // check rows
         }
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[i][0].equals(board[i][1])
@@ -68,7 +69,7 @@ public class Game {
                 return PLAYER_TWO_WIN;
             }
         }
-//        check columns
+        // check columns
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[0][i].equals(board[1][i])
                     && board[0][i].equals(board[2][i])
@@ -76,7 +77,7 @@ public class Game {
                 return PLAYER_TWO_WIN;
             }
         }
-//        check for draw
+        // check for draw
         int counter = 0;
         for(int i=0; i<BOARD_SIZE; i++)
             for(int j=0; j<BOARD_SIZE; j++)
