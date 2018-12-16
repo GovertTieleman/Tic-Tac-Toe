@@ -2,14 +2,12 @@ package com.example.govert.tictactoe;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Game game;
-    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9;
     private String s1, s2, s3, s4, s5, s6, s7, s8, s9;
 
     @Override
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-//        save button states
+        // save button states
         s1 = ((Button) findViewById(R.id.button1)).getText().toString();
         outState.putString("b1", s1);
         s2 = ((Button) findViewById(R.id.button2)).getText().toString();
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-//        load button states
+        // load button states
         s1 = savedInstanceState.getString("b1");
         ((Button) findViewById(R.id.button1)).setText(s1);
         s2 = savedInstanceState.getString("b2");
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.button8)).setText(s8);
         s9 = savedInstanceState.getString("b9");
         ((Button) findViewById(R.id.button9)).setText(s9);
-
     }
 
     public void tileClicked(View view) {
@@ -113,8 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 column = 2;
                 break;
         }
-        Log.d("Row: ", String.valueOf(row));
-        Log.d("column", String.valueOf(column));
 
         // update playing field if valid command
         TileState state = game.choose(row, column);
@@ -130,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
                 break;
         }
-//        check won
+        // check won
         GameState gameState = game.won();
         if(gameState.equals(GameState.PLAYER_ONE_WIN)) {
             Toast.makeText(MainActivity.this,"Player 1 wins!",
